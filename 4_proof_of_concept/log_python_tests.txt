@@ -1,0 +1,68 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.16, pytest-8.3.4, pluggy-1.6.0 -- /Users/janekmarkert/.venvs/traveltracker-analysis/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/janekmarkert/Desktop/BHT-Studium/4. Semester/Mobile Geoanwendungen/Projekt mit Paul/analysis
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1
+collecting ... collected 29 items
+
+tests/test_cascade.py::test_gewichteter_gnss_fehler_gewichtet_nach_n PASSED [  3%]
+tests/test_cascade.py::test_gewichteter_gnss_fehler_gleiches_gewicht PASSED [  6%]
+tests/test_features.py::test_feature_namen_sind_stabil_und_eindeutig PASSED [ 10%]
+tests/test_features.py::test_gleichfoermige_bewegung_gibt_erwartete_geschwindigkeit PASSED [ 13%]
+tests/test_features.py::test_stillstand_gibt_stopprate_eins PASSED       [ 17%]
+tests/test_features.py::test_fixture_stimmt_mit_aktueller_implementierung_ueberein PASSED [ 20%]
+tests/test_m1_gnss.py::test_cep_gibt_quantil_der_fehler PASSED           [ 24%]
+tests/test_m1_gnss.py::test_error_series_rechnet_meter_nicht_grad PASSED [ 27%]
+tests/test_m1_gnss.py::test_error_series_beruecksichtigt_laengengradstauchung PASSED [ 31%]
+tests/test_m2_classifier.py::test_baseline_kann_zug_und_flug_nicht_treffen PASSED [ 34%]
+tests/test_m2_classifier.py::test_confusion_hat_form_klassen_mal_klassen PASSED [ 37%]
+tests/test_m2_classifier.py::test_load_all_tracks_wirft_ohne_dateien PASSED [ 41%]
+tests/test_m3_proximity.py::test_bias_und_mae_werden_getrennt_ausgewiesen PASSED [ 44%]
+tests/test_m3_proximity.py::test_trennt_nach_sichtbedingung PASSED       [ 48%]
+tests/test_m4_lidar.py::test_verwirft_messungen_mit_niedriger_konfidenz PASSED [ 51%]
+tests/test_m4_lidar.py::test_trennt_nach_beleuchtung PASSED              [ 55%]
+tests/test_paths.py::test_pfade_bleiben_bei_wechsel_des_arbeitsverzeichnisses_gleich PASSED [ 58%]
+tests/test_paths.py::test_repo_ist_das_tatsaechliche_repository_wurzelverzeichnis PASSED [ 62%]
+tests/test_prepare.py::test_parse_plt_ueberspringt_kopfzeilen_und_rechnet_fuss_in_meter PASSED [ 65%]
+tests/test_prepare.py::test_parse_labels_liest_tabgetrennte_zeitspannen PASSED [ 68%]
+tests/test_prepare.py::test_mode_map_fasst_oepnv_zu_train_zusammen PASSED [ 72%]
+tests/test_resegment.py::test_trennt_stopp_und_fahrt PASSED              [ 75%]
+tests/test_resegment.py::test_kurze_pause_bleibt_teil_der_fahrt PASSED   [ 79%]
+tests/test_resegment.py::test_gleiche_grenzen_wie_die_app PASSED         [ 82%]
+tests/test_resegment.py::test_laedt_fixes_ohne_hoehe PASSED              [ 86%]
+tests/test_train.py::test_split_trennt_nach_nutzer_nicht_nach_fenster PASSED [ 89%]
+tests/test_train.py::test_build_matrix_liefert_eine_zeile_je_fenster PASSED [ 93%]
+tests/test_train.py::test_train_dokumentiert_modell_und_f1_ohne_plane PASSED [ 96%]
+tests/test_train.py::test_subsample_behaelt_staerksten_beitraeger_je_klasse PASSED [100%]
+
+=============================== warnings summary ===============================
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:64
+  /Users/janekmarkert/.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+  /Users/janekmarkert/.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+  /Users/janekmarkert/.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+../../../../../../.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_mathtext.py:45
+  /Users/janekmarkert/.venvs/traveltracker-analysis/lib/python3.11/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 29 passed, 14 warnings in 2.27s ========================

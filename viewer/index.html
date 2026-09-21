@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Kaskade — Feldtest-Replay</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://unpkg.com/maplibre-gl@4/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@4/dist/maplibre-gl.css" rel="stylesheet">
+<style>
+  html, body { margin: 0; height: 100%; font-family: -apple-system, sans-serif; }
+  #map { position: absolute; inset: 0; }
+  #panel {
+    position: absolute; top: 12px; left: 12px; z-index: 1;
+    background: rgba(255,255,255,0.92); padding: 10px 14px; border-radius: 8px;
+    font-size: 13px; box-shadow: 0 1px 4px rgba(0,0,0,0.25); max-width: 260px;
+  }
+  #panel input[type=file] { display: block; margin: 6px 0; }
+  #legend span { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; }
+  #legend div { margin: 2px 0; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div id="panel">
+  <strong>Kaskade — Feldtest-Replay</strong>
+  <p>Track-GeoJSON laden (Export aus der App, <code>trip_*.geojson</code>):</p>
+  <input type="file" id="datei" accept=".geojson,.json">
+  <div id="legend">
+    <div><span style="background:#1b7f79"></span>Fuß</div>
+    <div><span style="background:#c86a1f"></span>Rad</div>
+    <div><span style="background:#3b5fbf"></span>Auto</div>
+    <div><span style="background:#8a3ea8"></span>Zug</div>
+    <div><span style="background:#b03a3a"></span>Flug</div>
+    <div><span style="background:#9aa0a6"></span>unbekannt</div>
+  </div>
+</div>
+<script>
+// ponytail: Kartenstil kommt über CDN (unpkg), kein lokales MBTiles-Bundle
+// hinterlegt -- Viewer braucht damit Internet. Lokales Vendor-Bundle
+// nachziehen, sobald ein Kartenausschnitt des Feldtestgebiets exportiert ist.
+const FARBEN = {
+  foot: "#1b7f79", bike: "#c86a1f", car: "#3b5fbf",
+  train: "#8a3ea8", plane: "#b03a3a"
+};
+const FARBE_UNBEKANNT = "#9aa0a6";
+
+const map = new maplibregl.Map({
+  container: "map",
+  style: "https://tiles.openfreemap.org/styles/liberty",
+  center: [13.405, 52.52], // Berlin Mitte, siehe ios/.../Kartenstandard.swift
+  zoom: 11
+});
+map.addControl(new maplibregl.NavigationControl());
+
+function ladeTrack(geojson) {
+  const quelle = "track";
+  if (map.getSource(quelle)) {
+    map.getSource(quelle).setData(geojson);
+    return;
+  }
+  map.addSource(quelle, { type: "geojson", data: geojson });
+  map.addLayer({
+    id: "track-linien",
+    type: "line",
+    source: quelle,
+    filter: ["==", ["geometry-type"], "LineString"],
+    paint: {
+      "line-width": 4,
+      "line-color": [
+        "match", ["get", "mode"],
+        "foot", FARBEN.foot, "bike", FARBEN.bike, "car", FARBEN.car,
+        "train", FARBEN.train, "plane", FARBEN.plane,
+        FARBE_UNBEKANNT
+      ]
+    }
+  });
+  map.addLayer({
+    id: "track-punkte",
+    type: "circle",
+    source: quelle,
+    filter: ["==", ["geometry-type"], "Point"],
+    paint: { "circle-radius": 3, "circle-color": "#333" }
+  });
+
+  const bounds = new maplibregl.LngLatBounds();
+  let hatKoordinaten = false;
+  const sammeln = (coords) => {
+    if (typeof coords[0] === "number") { bounds.extend(coords); hatKoordinaten = true; }
+    else coords.forEach(sammeln);
+  };
+  geojson.features.forEach(f => f.geometry && sammeln(f.geometry.coordinates));
+  if (hatKoordinaten) map.fitBounds(bounds, { padding: 40 });
+}
+
+document.getElementById("datei").addEventListener("change", (ev) => {
+  const datei = ev.target.files[0];
+  if (!datei) return;
+  const leser = new FileReader();
+  leser.onload = () => ladeTrack(JSON.parse(leser.result));
+  leser.readAsText(datei);
+});
+
+// Auto-Laden über ?track=pfad.geojson, für die Doppelklick-Nutzung mit
+// mitgeliefertem Feldtest-Export.
+const params = new URLSearchParams(location.search);
+const pfad = params.get("track");
+if (pfad) {
+  map.on("load", () => fetch(pfad).then(r => r.json()).then(ladeTrack));
+}
+</script>
+</body>
+</html>

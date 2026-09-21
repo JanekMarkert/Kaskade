@@ -1,0 +1,29 @@
+# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+Config.local.xcconfig
+
+# Python
+__pycache__/
+*.pyc
+.venv
+.pytest_cache/
+analysis/.env
+
+# Große Rohdaten
+analysis/geolife/raw/
+analysis/geolife/dataset.parquet
+data/tracks/*.sqlite
+
+# Zwischenspeicher für build_matrix, regenerierbar aus dataset.parquet
+analysis/geolife/out/matrix_cache_*.npz
+
+# macOS
+.DS_Store
+
+# Doppelt: identisch zu data/measurements/m3/
+Messdaten 17.9/
+
+.mcp.json

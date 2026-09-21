@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Kaskade</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Misst die Entfernung zu einem zweiten Gerät über Bluetooth.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_kaskade-uwb._tcp</string>
+		<string>_kaskade-uwb._udp</string>
+	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Misst Entfernungen mit dem LiDAR-Scanner.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Findet das zweite Messgerät im lokalen Netz.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Zeichnet die Route auch bei ausgeschaltetem Bildschirm auf.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Zeichnet die Route deiner Reise auf.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Erkennt anhand der Bewegung das Verkehrsmittel.</string>
+	<key>NSNearbyInteractionUsageDescription</key>
+	<string>Misst die Entfernung zu einem zweiten Gerät über Ultrabreitband.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+		<string>bluetooth-peripheral</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict/>
+</dict>
+</plist>

@@ -1,0 +1,3 @@
+verfahren,n_segmente,n_klassifiziert,macro_f1,treffer
+eigenes Modell,6,6,0.5416666666666666,0.6666666666666666
+CMMotionActivity,6,6,0.625,0.6666666666666666

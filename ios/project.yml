@@ -1,0 +1,94 @@
+name: Kaskade
+options:
+  bundleIdPrefix: de.bht
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+
+packages:
+  GRDB:
+    url: https://github.com/groue/GRDB.swift
+    from: 7.0.0
+  MapLibre:
+    url: https://github.com/maplibre/maplibre-gl-native-distribution
+    from: 6.0.0
+
+
+targets:
+  Kaskade:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: Kaskade
+    dependencies:
+      - package: GRDB
+        product: GRDB
+      - package: MapLibre
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: de.bht.messkaskade
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: 7Y66GV9S4B
+        TARGETED_DEVICE_FAMILY: "1"
+        SUPPORTS_MACCATALYST: false
+        GENERATE_INFOPLIST_FILE: false
+        INFOPLIST_FILE: Kaskade/Info.plist
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_EMIT_LOC_STRINGS: true
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    info:
+      path: Kaskade/Info.plist
+      properties:
+        CFBundleDisplayName: "Kaskade"
+        UILaunchScreen: {}
+        NSLocationWhenInUseUsageDescription: "Zeichnet die Route deiner Reise auf."
+        NSLocationAlwaysAndWhenInUseUsageDescription: "Zeichnet die Route auch bei ausgeschaltetem Bildschirm auf."
+        NSMotionUsageDescription: "Erkennt anhand der Bewegung das Verkehrsmittel."
+        NSBluetoothAlwaysUsageDescription: "Misst die Entfernung zu einem zweiten Gerät über Bluetooth."
+        NSNearbyInteractionUsageDescription: "Misst die Entfernung zu einem zweiten Gerät über Ultrabreitband."
+        NSCameraUsageDescription: "Misst Entfernungen mit dem LiDAR-Scanner."
+        NSLocalNetworkUsageDescription: "Findet das zweite Messgerät im lokalen Netz."
+        NSBonjourServices:
+          - "_kaskade-uwb._tcp"
+          - "_kaskade-uwb._udp"
+        UIBackgroundModes:
+          - location
+          - bluetooth-peripheral
+    scheme:
+      testTargets:
+        - KaskadeTests
+        - KaskadeUITests
+      config: Debug
+
+  KaskadeTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: KaskadeTests
+    dependencies:
+      - target: Kaskade
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: true
+        SWIFT_EMIT_LOC_STRINGS: true
+
+  KaskadeUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - path: KaskadeUITests
+    dependencies:
+      - target: Kaskade
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: true
+        SWIFT_EMIT_LOC_STRINGS: true
+        TEST_TARGET_NAME: Kaskade

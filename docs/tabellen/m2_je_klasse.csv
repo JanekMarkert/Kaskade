@@ -1,0 +1,5 @@
+klasse,n_segmente,f1_modell,f1_baseline
+foot,2,1.0,1.0
+bike,1,0.0,1.0
+car,1,0.5,0.5
+train,2,0.6666666666666666,0.0
