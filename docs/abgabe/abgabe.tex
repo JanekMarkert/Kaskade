@@ -409,7 +409,7 @@ auf einer kleinen Karte), nicht Zufall.
 
 Mit korrigierter Referenz zeigt p1 (Straßenschlucht) ein eigenes,
 physikalisch plausibles Muster: CEP50 mit 0{,}38~m extrem klein, CEP95 mit
-32{,}33~m fast 100-mal so groß. Der Großteil der Fixes sitzt also sehr
+32{,}33~m rund 85-mal so groß. Der Großteil der Fixes sitzt also sehr
 nah am wahren Punkt, eine Minderheit reißt durch Mehrwegeausbreitung an
 Gebäudefassaden stark aus -- anders als bei p2 (gleichmäßig moderater
 Fehler) und p3 (durchweg kleiner Fehler), wo CEP50 und CEP95 näher
@@ -640,18 +640,39 @@ Solldistanz zusammen, getrennt nach Sichtkontakt (LOS) und Verdeckung
 \end{tabularx}
 \end{table}
 
-Zwei Befunde stechen heraus. Erstens: BLE-RSSI degradiert mit wachsender
-Distanz deutlich und systematisch -- der Fehler wächst ab~5~m stark und
-erreicht bei 8--9~m fast 4{,}7--4{,}8~m, bei durchweg negativer Verzerrung
-(die App unterschätzt die Distanz). Das entspricht dem erwarteten Verhalten
-signalstärkebasierter Verfahren und bestätigt UWB als das für diesen
-Anwendungsfall deutlich robustere Verfahren über die getestete Distanz.
-Zweitens: die 9-m-Messung war praktisch nicht durchführbar -- das
-UWB-Ranging brach bei dieser Distanz zuverlässig ab, weshalb für 9~m nur
-BLE-Werte vorliegen. 8~m ist damit die erreichte Obergrenze der
-Messreihe, und schon dort zeigt UWB einen deutlich erhöhten Fehler
-gegenüber den Nachbardistanzen (1{,}08--1{,}20~m statt 0{,}2--0{,}4~m bei
-2--7~m) -- ein Hinweis auf eine praktische Reichweitengrenze unterhalb der
+Drei Befunde stechen heraus. Erstens: BLE-RSSI degradiert mit wachsender
+Distanz deutlich. Der Fehler wächst ab~5~m stark und erreicht bei 8--9~m
+fast 4{,}7~m, und die Verzerrung wechselt dabei das Vorzeichen: Im Nahbereich
+überschätzt BLE die Distanz (im Mittel $+1{,}14$~m bei 0{,}5~m), ab~3~m
+unterschätzt es sie ($-0{,}30$~m, bei 8--9~m $-4{,}7$~m). Das entspricht dem
+erwarteten Verhalten signalstärkebasierter Verfahren.
+
+Zweitens: UWB liegt bei fünf von sieben Solldistanzen (0{,}5~m sowie 2 bis
+7~m) unter 0{,}4~m MAE und ist, über beide Sichtbedingungen gemittelt, bei
+sechs von sieben Distanzen genauer als BLE (Ausnahme 1~m; bei 2~m~LOS liegt
+BLE mit 0{,}16~m unter UWB mit 0{,}39~m). Der Fehler ist dort fast reine Verzerrung: Sie ist bei jeder Distanz
+positiv, in diesem Bereich 0{,}18 bis 0{,}39~m, während die Einzelmessungen
+nur um 0{,}02 bis 0{,}07~m streuen. UWB misst also sehr reproduzierbar, aber
+um einen ziemlich konstanten Betrag zu weit; ein fester Abzug wäre denkbar,
+wurde hier nicht angewandt.
+
+Drittens: zwei Distanzen weichen davon ab. Bei 1~m liegen beide Durchgänge
+weit daneben (MAE 1{,}49 und 1{,}02~m), und die Werte um 2~m sind kein
+Einschwingen: Der Median liegt bei 2{,}26 beziehungsweise 2{,}02~m, der
+kleinste Einzelwert bei 1{,}82 beziehungsweise 1{,}58~m, die 1~m wird nie
+erreicht. BLE derselben Durchgänge liegt bei 1{,}0 bis 1{,}5~m. Beide
+Durchgänge starteten im Abstand von 101~s, also kurz nacheinander; ein
+gemeinsamer Aufstellungsfehler (Solldistanz falsch gemessen) würde beide
+erklären, ein UWB-Effekt im Nahbereich (etwa durch die Geräteausrichtung)
+ebenfalls. Ohne Wiederholung
+lässt sich das nicht unterscheiden. Die Durchgänge bleiben deshalb in der
+Tabelle, weil kein Protokollfehler belegt ist, anders als bei den drei
+aussortierten Durchgängen. Die zweite Abweichung liegt am oberen Ende: Die
+9-m-Messung war praktisch nicht durchführbar -- das UWB-Ranging brach bei
+dieser Distanz zuverlässig ab, weshalb für 9~m nur BLE-Werte vorliegen. 8~m
+ist damit die erreichte Obergrenze der Messreihe, und schon dort steigt der
+UWB-Fehler auf 1{,}08 bis 1{,}20~m gegenüber 0{,}2 bis 0{,}4~m bei 2 bis
+7~m -- ein Hinweis auf eine praktische Reichweitengrenze unterhalb der
 Spezifikation, die diese Arbeit selbst gemessen statt nur behauptet hat.
 
 \begin{figure}[htbp]
@@ -917,8 +938,10 @@ aus dem tatsächlich exportierten Artefakt abgeleitet wird, trägt Annahmen,
 die erst am erzeugten Code sichtbar werden.
 
 Die eigene Messreihe (Abschnitt~\ref{sec:messstudien}) bestätigt die aus
-der Literatur erwartete Rangfolge: UWB bleibt über die getestete Distanz
-mit einem MAE von durchweg unter 0{,}4~m stabil, BLE-RSSI degradiert ab
+der Literatur erwartete Rangfolge: UWB liegt bei fünf von sieben
+Solldistanzen unter 0{,}4~m MAE und misst dabei sehr reproduzierbar, mit
+konstanter Verzerrung nach oben; die Ausnahmen sind 1~m (ein ungeklärter
+Versatz um etwa 1~m) und 8~m (Reichweitengrenze). BLE-RSSI degradiert ab
 5~m deutlich und erreicht bei 8--9~m einen MAE von fast 5~m.
 
 Bei M2 fällt das Ergebnis gegen die eigene Erwartung aus, und der Grund

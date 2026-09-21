@@ -61,6 +61,28 @@ Maßband (M4). M1, M3 und M4 belegen die vier Ortungsverfahren, M2 prüft den
 Anwendungsfall. Details, Zahlen und Grafiken stehen im vollständigen
 Abgabedokument \texttt{abgabe.pdf}.
 
+\section*{Ergebnisse auf einen Blick}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabularx}{\linewidth}{@{}lL@{}}
+\toprule
+\textbf{Studie} & \textbf{Ergebnis} \\
+\midrule
+M1 GNSS & CEP95 an drei Referenzpunkten: 5{,}1~m (abgeschattet), 14{,}0~m
+(offener Himmel), 32{,}3~m (Straßenschlucht, bimodal: CEP50 nur 0{,}38~m) \\
+M3 UWB/BLE & UWB 0{,}2 bis 0{,}4~m mittlerer Fehler bei fünf von sieben
+Distanzen, Reichweitengrenze bei 8~m; BLE-RSSI bis 4{,}7~m Fehler bei 8~m \\
+M4 LiDAR & 1 bis 29~mm Fehler von 0{,}3 bis 5~m; 0{,}55~m bei 17~m, außerhalb
+der Spezifikation \\
+M2 Transportmodus & sechs Segmente: Macro-F1 0{,}54 (eigenes Modell) gegen
+0{,}62 (\texttt{CMMotionActivity}); die Baseline kann \emph{train} nicht
+vergeben, das Modell erkennt es, verfehlt dafür die Radfahrt \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 \section*{Technologien}
 
 \begin{table}[H]
@@ -95,24 +117,18 @@ Plattform & Natives SwiftUI, iOS~17+ \\
 
 \begin{figure}[H]
 \centering
-\raisebox{-\height}{\includegraphics[width=0.23\linewidth]{../../4_proof_of_concept/screenshot_startbildschirm.png}}\hfill
-\raisebox{-\height}{\includegraphics[width=0.23\linewidth]{../../4_proof_of_concept/screenshot_trip_segmente.png}}\hfill
-\raisebox{-\height}{\includegraphics[width=0.23\linewidth]{../../4_proof_of_concept/screenshot_m1_gnss.png}}
-\caption{Links: Startbildschirm mit den sieben Werkzeugen für Aufzeichnung,
-Messstudien und Export. Mitte: Trip vom 20.09. mit Karte und
-Segmentierung in Fußwege, Stopps und Fahrt (Handlabels \texttt{foot} und
-\texttt{car}). Rechts: M1, GNSS-Genauigkeit am Referenzpunkt~p1 (BHT-Campus
-Wedding, Häuserschlucht), zehn Minuten Messdauer.}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\raisebox{-\height}{\includegraphics[width=0.23\linewidth]{../../4_proof_of_concept/screenshot_m3_uwb_ble.png}}\hspace{1.2cm}
-\raisebox{-\height}{\includegraphics[width=0.23\linewidth]{../../4_proof_of_concept/screenshot_m4_lidar.png}}
-\caption{Links: M3, UWB und BLE-RSSI gegen eine Solldistanz, ein Gerät als
-Anker und eines als Messgerät, 60 Messungen je Durchgang. Rechts: M4,
-LiDAR-Tiefe im Fadenkreuz gegen ein Maßband, 30 Messungen je Durchgang,
-getrennt nach Tag und Nacht.}
+\raisebox{-\height}{\includegraphics[width=0.185\linewidth]{../../4_proof_of_concept/screenshot_startbildschirm.png}}\hfill
+\raisebox{-\height}{\includegraphics[width=0.185\linewidth]{../../4_proof_of_concept/screenshot_trip_segmente.png}}\hfill
+\raisebox{-\height}{\includegraphics[width=0.185\linewidth]{../../4_proof_of_concept/screenshot_m1_gnss.png}}\hfill
+\raisebox{-\height}{\includegraphics[width=0.185\linewidth]{../../4_proof_of_concept/screenshot_m3_uwb_ble.png}}\hfill
+\raisebox{-\height}{\includegraphics[width=0.185\linewidth]{../../4_proof_of_concept/screenshot_m4_lidar.png}}
+\caption{Von links: Startbildschirm mit den sieben Werkzeugen; Trip vom 20.09.
+mit Karte und Segmentierung in Fußwege, Stopps und Fahrt (Handlabels
+\texttt{foot} und \texttt{car}); M1, GNSS-Genauigkeit am Referenzpunkt~p1
+(BHT-Campus Wedding, Häuserschlucht), zehn Minuten Messdauer; M3, UWB und
+BLE-RSSI gegen eine Solldistanz mit Anker und Messgerät, 60 Messungen je
+Durchgang; M4, LiDAR-Tiefe im Fadenkreuz gegen ein Maßband, 30 Messungen je
+Durchgang, getrennt nach Tag und Nacht.}
 \end{figure}
 
 \section*{Arbeitsteilung}

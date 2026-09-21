@@ -18,15 +18,17 @@ einer Abbildung auf derselben Achse, Distanz gegen Positionsfehler, log-log.
 
 GNSS an drei Referenzpunkten (n=868/26/42 Fixes): CEP95 zwischen 5,1 m am
 abgeschatteten Punkt und 32,3 m in der Straßenschlucht. Der
-Straßenschlucht-Punkt ist bimodal — CEP50 bei 0,38 m, CEP95 fast hundertmal
+Straßenschlucht-Punkt ist bimodal — CEP50 bei 0,38 m, CEP95 rund 85-mal
 so groß. Die Mehrheit der Fixes sitzt also nah am wahren Punkt, eine
 Minderheit reißt über Gebäudefassaden aus.
 
-UWB bleibt zwischen 0,5 m und 7 m Solldistanz bei 0,18–0,39 m mittlerem
-Absolutfehler, mit oder ohne Sichtkontakt. BLE-RSSI wächst über 5 m hinaus
-auf 4,7 m Fehler bei 8 m. Bei 9 m brach das UWB-Ranging reproduzierbar ab,
-schon bei 8 m steigt der Fehler auf 1,1 m — eine praktische
-Reichweitengrenze unterhalb der Spezifikation.
+UWB liegt bei fünf von sieben Solldistanzen (0,5 m und 2–7 m) unter 0,4 m
+mittlerem Absolutfehler, mit oder ohne Sichtkontakt, bei kleiner Streuung und
+konstanter Verzerrung nach oben. Bei 1 m liegen beide Durchgänge etwa 1 m
+daneben, die Ursache ist ungeklärt. BLE-RSSI wächst über 5 m hinaus auf 4,7 m
+Fehler bei 8 m. Bei 9 m brach das UWB-Ranging reproduzierbar ab, schon bei
+8 m steigt der Fehler auf 1,1 m — eine praktische Reichweitengrenze
+unterhalb der Spezifikation.
 
 LiDAR liegt im spezifizierten Bereich 0,3–5 m bei 1,2–29 mm Fehler, tags wie
 nachts. Eine Testmessung bei 17 m, weit außerhalb der rund 5 m
