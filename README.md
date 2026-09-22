@@ -16,9 +16,9 @@ einer Abbildung auf derselben Achse, Distanz gegen Positionsfehler, log-log.
 
 ## Was gemessen wurde
 
-GNSS an drei Referenzpunkten (n=868/26/42 Fixes): CEP95 zwischen 5,1 m am
-abgeschatteten Punkt und 32,3 m in der Straßenschlucht. Der
-Straßenschlucht-Punkt ist bimodal — CEP50 bei 0,38 m, CEP95 rund 85-mal
+GNSS an drei Referenzpunkten (n=868/815/42 Fixes): CEP95 zwischen 5,1 m am
+abgeschatteten Punkt und 32,3 m in der Straßenschlucht (p2, offener Himmel, liegt mit 8,2 m
+dazwischen). Der Straßenschlucht-Punkt ist bimodal — CEP50 bei 0,38 m, CEP95 rund 85-mal
 so groß. Die Mehrheit der Fixes sitzt also nah am wahren Punkt, eine
 Minderheit reißt über Gebäudefassaden aus.
 

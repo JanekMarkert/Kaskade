@@ -370,7 +370,7 @@ noch aus.
 \label{sec:m1}
 
 Tabelle~\ref{tab:m1} zeigt CEP50/CEP95 (Circular Error Probable) für alle
-drei geplanten Referenzpunkte, berechnet mit
+drei Referenzpunkte, berechnet mit
 \texttt{analysis/evaluation/m1\_gnss.py} aus \texttt{data/measurements/
 m1\_static/}.
 
@@ -385,7 +385,7 @@ m1\_static/}.
 \textbf{CEP95 (m)} & \textbf{gem. Genauigkeit (m)} & \textbf{Faktor} \\
 \midrule
 p1 & Straßenschlucht & 868 & 0{,}38 & 32{,}33 & 3{,}32 & 9{,}73 \\
-p2 & offener Himmel & 26 & 12{,}91 & 14{,}01 & 7{,}37 & 1{,}90 \\
+p2 & offener Himmel & 815 & 2{,}60 & 8{,}23 & 2{,}11 & 3{,}91 \\
 p3 & abgeschattet & 42 & 1{,}27 & 5{,}11 & 8{,}01 & 0{,}64 \\
 \bottomrule
 \end{tabularx}
@@ -393,29 +393,37 @@ p3 & abgeschattet & 42 & 1{,}27 & 5{,}11 & 8{,}01 & 0{,}64 \\
 
 \emph{Faktor} bezeichnet CEP95 geteilt durch die von \texttt{CoreLocation}
 selbst gemeldete Genauigkeit -- ein Wert nahe~1 heißt, das Gerät schätzt
-seine eigene Unsicherheit realistisch ein. Zwei Nebenbefunde bei der
-Auswertung, beide desselben Musters: Die ursprünglich für p3 und für p1
-eingetragenen Referenzkoordinaten wichen 59~m beziehungsweise 155~m vom
+seine eigene Unsicherheit realistisch ein. Drei Nebenbefunde bei der
+Auswertung, alle desselben Musters: Die ursprünglich für p1, p2 und p3
+eingetragenen Referenzkoordinaten wichen 155, 17 beziehungsweise 59~m vom
 tatsächlichen Messpunkt ab, während die eigenen GNSS-Fixes jeweils über
-zwei unabhängige Sessions auf denselben Fleck konvergierten (unter 5~m
-Abstand zueinander bei p1, unter 1~m bei p3). Ursache war beide Male ein
-zu grob gesetzter Kartenpunkt bei der Anlage der Referenzdaten, keine
-GNSS- oder Standortabweichung; beide Koordinaten in
-\texttt{data/reference/reference\_points.geojson} wurden entsprechend
-korrigiert. Der Fund zeigt, dass die Referenzdaten selbst einer Prüfung
-bedürfen, nicht nur das Messverfahren -- und dass er zweimal auftrat,
-spricht dafür, dass er bei der Anlage systematisch war (grobes Antippen
-auf einer kleinen Karte), nicht Zufall.
+mindestens zwei unabhängige Sessions auf denselben Fleck konvergierten
+(unter 5~m Abstand zueinander bei p1, unter 5~m bei p2, unter 1~m bei
+p3). Ursache war jedes Mal ein zu grob gesetzter Kartenpunkt bei der
+Anlage der Referenzdaten, keine GNSS- oder Standortabweichung; alle drei
+Koordinaten in \texttt{data/reference/reference\_points.geojson} wurden
+entsprechend korrigiert. Bei p2 kamen zwei weitere, am 22.09. aufgezeichnete
+Sessions (221 und 568~Fixes) zur ursprünglichen 26-Fix-Session hinzu; ihre
+Median-Zentren liegen 1{,}3 und 3{,}2~m vom korrigierten Punkt entfernt, die
+ursprüngliche Session dagegen durchweg rund 18~m davon -- ein eigener,
+enger Block, der in der Tabelle als Teil des Fehlers stehen bleibt, weil
+kein Protokollfehler dafür belegt ist, ähnlich den Ausreißern bei p1.
+Dass die Referenzpunkt-Abweichung nun an allen drei Punkten auftrat, spricht
+dafür, dass sie bei der Anlage systematisch war (grobes Antippen auf einer
+kleinen Karte), nicht Zufall.
 
 Mit korrigierter Referenz zeigt p1 (Straßenschlucht) ein eigenes,
 physikalisch plausibles Muster: CEP50 mit 0{,}38~m extrem klein, CEP95 mit
 32{,}33~m rund 85-mal so groß. Der Großteil der Fixes sitzt also sehr
 nah am wahren Punkt, eine Minderheit reißt durch Mehrwegeausbreitung an
-Gebäudefassaden stark aus -- anders als bei p2 (gleichmäßig moderater
-Fehler) und p3 (durchweg kleiner Fehler), wo CEP50 und CEP95 näher
-beieinanderliegen. Genau dieses bimodale Verhalten wird in der Literatur
-für Straßenschluchten erwartet und ist hier erstmals selbst gemessen statt
-nur zitiert.
+Gebäudefassaden stark aus. Genau dieses bimodale Verhalten wird in der
+Literatur für Straßenschluchten erwartet und ist hier erstmals selbst
+gemessen statt nur zitiert. p3 (abgeschattet) zeigt den Gegenpol: CEP50
+und CEP95 liegen mit Faktor~4 nah beieinander, durchweg kleiner Fehler.
+p2 (offener Himmel) liegt dazwischen, mit einem schwächeren Abbild
+desselben p1-Musters -- 95~Prozent der 815~Fixes unter 8{,}4~m, aber ein
+Ausreißer-Anteil von 3{,}8~Prozent bis 22~m, der überwiegend aus der 18~m
+abseits liegenden ursprünglichen Session stammt.
 
 \begin{figure}[htbp]
 \centering

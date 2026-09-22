@@ -9,17 +9,29 @@
         "environment": "urban_canyon",
         "source": "Korrigiert aus zwei konvergierenden Messsessions (18.09., n=214+654, Median-Abstand 4,7m zueinander), da urspruenglicher Kartenpunkt nur grob gesetzt war und ca. 155m daneben lag"
       },
-      "geometry": { "type": "Point", "coordinates": [13.35393863137414, 52.54498630747075] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.35393863137414,
+          52.54498630747075
+        ]
+      }
     },
     {
       "type": "Feature",
       "properties": {
         "id": "p2",
-        "name": "Rummelsburger Ufer, Gebäudeecke am Wasser",
+        "name": "Rummelsburger Ufer, Gebäudeecke am Wasser (korrigiert)",
         "environment": "open_sky",
-        "source": "ALKIS Berlin Gebäude (WFS), Feature gebaeude.DEBE11YYI0000If5"
+        "source": "ALKIS Berlin Gebäude (WFS), Feature gebaeude.DEBE11YYI0000If5; Koordinate korrigiert auf n-gewichtetes Median-Zentrum zweier konvergenter GNSS-Sessions (1790020596, 1790021228), analog zu p1 und p3. Abstand zum ALKIS-Punkt 16,72 m."
       },
-      "geometry": { "type": "Point", "coordinates": [13.476838, 52.4999012] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.4767654,
+          52.5000449
+        ]
+      }
     },
     {
       "type": "Feature",
@@ -29,7 +41,13 @@
         "environment": "shadowed",
         "source": "Korrigiert aus zwei konvergierenden Messsessions (13.09./unbekannt, n=9+33, Streuung <1m), da urspruenglicher Kartenpunkt nur grob gesetzt war und ca. 66m daneben lag"
       },
-      "geometry": { "type": "Point", "coordinates": [13.438668826361244, 52.53126064659031] }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.438668826361244,
+          52.53126064659031
+        ]
+      }
     }
   ]
 }
