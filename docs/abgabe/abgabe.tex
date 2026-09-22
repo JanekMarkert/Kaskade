@@ -162,9 +162,8 @@ keiner dieser Zustände ab, weil CoreMotion sie aus Beschleunigungsdaten
 allein nicht von \texttt{automotive} unterscheiden kann. Eine
 Positionierungsanwendung, die trotzdem zwischen Auto und Bahn
 unterscheiden will, braucht ein eigenes Modell -- und genau dieses Modell
-motiviert, warum die Ortungskaskade mehr als eine akademische Übung ist:
-Ohne verlässliche Positions- und Bewegungsdaten hat auch das beste
-Klassifikationsmodell keine brauchbare Eingabe.
+ist der Anwendungsfall, der die Ortungskaskade motiviert
+(Abschnitt~\ref{sec:leitmotiv}).
 
 Die Aufgabenliste für diese Arbeit:
 
@@ -198,10 +197,15 @@ Positionsfehler, beide Achsen logarithmisch
 (Abbildung~\ref{fig:cascade}). Ortung ist damit keine einzelne Technologie,
 sondern eine maßstabsabhängige Kaskade -- GNSS für den globalen Bereich,
 UWB und BLE für den Nahbereich, LiDAR für das Nahfeld unter fünf Metern.
-Reisetagebuch und Transportmodus-Klassifikation (Abschnitte~\ref{sec:m1}
-bis~\ref{sec:m4}, \ref{sec:messstudien}) sind der Anwendungsfall, der diese
-Kaskade braucht; die Kaskade selbst, nicht die Reise-App drumherum, ist die
-Kernaussage der Arbeit und der Grund für den Namen.
+Die Transportmodus-Klassifikation (Abschnitte~\ref{sec:m1}
+bis~\ref{sec:m4}, \ref{sec:messstudien}) ist der Anwendungsfall, der diese
+Kaskade braucht; die Kaskade selbst, nicht die Klassifikation drumherum, ist
+die Kernaussage der Arbeit und der Grund für den Namen. Die Klassifikation
+trägt dazu ihre eigene Kernthese bei, in zwei Teilen: Apples
+Systemklassifikator kann \emph{train} strukturell nicht erkennen, weil
+\texttt{CMMotionActivity} den Zustand nicht kennt; ob das eigene Modell die
+Klasse deshalb auch im Feld zuverlässiger trifft, ist die empirische Frage,
+die M2 (Abschnitt~\ref{sec:m2}) beantwortet.
 
 \section{Fachliche Grundlagen}
 
